@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Choose an audio file</h1>
+
+<p1>
+<input id="audio_file" type="file" accept="audio/*" />
+<audio id="audio_player" />
+</p1>
+
+<h3> 
+<button onclick="play()">Play</button>
+<button onclick="pause()">Pause</button>
+</h3>
+
+<script>
+audio_file.onchange = function(){
+    var files = this.files;
+    var file = URL.createObjectURL(files[0]); 
+    audio_player.src = file; 
+};
+
+function secondsToMinutes(p1) {
+    var num = Math.floor(p1/60);
+    var n = num.toString();
+    var o = 0; 
+    var p = p1 % 60; 
+    if (p < 10) {o = o.toString().concat(p.toString());}
+    else {o = p.toString();}
+    return n.concat(":"+o)
+}
+
+function myTimer() {
+    var x = document.getElementById("audio_player").currentTime.toFixed(0);
+    var y = " / ";
+    var z = document.getElementById("audio_player").duration.toFixed(0);
+    document.getElementById("time").innerHTML = secondsToMinutes(x) + y + secondsToMinutes(z);
+}
+
+var myVar = setInterval(myTimer, 1000); 
+
+function play() {
+    audio_player.play();
+    myTimer();
+}
+
+function pause() {
+    audio_player.pause();
+}
+</script>
+
+<div id="time">0:00 / NaN:NaN</div>
+</body>
+</html>

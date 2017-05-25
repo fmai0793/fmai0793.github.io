@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 15px;
+    text-align: center;
+}
+}
+
+</style>
+<body>
+
+<a href="http://jquery.com/">jQuery</a>
+<script src="jquery.js"></script>
+<script>
+// http://learn.jquery.com/
+
+function openDooratIndex(index){
+    $('#Image' + index).src='http://cdn.modernfarmer.com/wp-content/uploads/2013/09/saanen.jpg';
+}
+
+function randomlyopenunselecteddoor(){
+    $('.door.closed.unselected.doesnothavecar').eq(0).removeClass('closed').addClass('opened').src='http://cdn.modernfarmer.com/wp-content/uploads/2013/09/saanen.jpg';
+}
+
+var firstselection = true;
+
+function initGame(){
+    var carIsAtIndex = Math.floor(Math.random() * 3);
+    $('.door').addClass('doesnothavecar');
+    $('.door').eq(carIsAtIndex).removeClass('doesnothavecar');
+
+    //close all door
+    $('.door').addClass('closed unselected').removeClass('selected').removeClass('opened');
+    $('.door').src="http://www.letsmakeadeal.com/closed-1.gif";
+
+    $('.door.closed').click(function(){
+        if(firstselection){
+            firstselection = false;
+            $(this).addClass('selected').removeClass('unselected');
+            randomlyopenunselecteddoor();
+        }else{
+            if($(this).hasClass('doesnothavecar')){alert('you lose')}
+            else{alert('you win');}
+        }
+    })
+    
+   
+};
+
+$( document ).ready(function() {
+    // put your code here
+    
+    initGame();
+    
+});
+
+
+</script>
+</style>
+<h1 class="slowdown">TIME TO PLAY A GAME</h1>
+<p>Choose from one of the three doors below to win the prize behind the door. Two of them have goats, and one with a convertible.</p>
+<h2>
+<img id="Image1" data-index="0" class="door" src="http://www.letsmakeadeal.com/closed-1.gif" style="width:200px;height:200px;"> 
+<img id="Image2" data-index="1" class="door" src="https://thecreativemummy.files.wordpress.com/2012/06/dsc_08591.jpg" style="width:200px;height:200px;"> 
+<img id="Image3" data-index="2" class="door" src="http://educationnews.educationviewsor.netdna-cdn.com/wp-content/uploads/2015/10/door3.png" style="width:200px;height:200px;"> 
+</h2>
+<input type="hidden" id="myInput" value="I have opened door number __ for you, which contained a goat. You now have the option to keep or switch doors.">
+<p2 id="demo"></p2>
+</body>
+</html>

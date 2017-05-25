@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: lightblue;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 10px;
+    text-align: center;
+}
+</style>
+<script>
+
+function changeImage() {
+    var image = document.getElementById('myImage');
+    if (image.src.match("http://mothersdayshrine.com/wp-content/uploads/2017/04/Happy-Mothers-Day-Cards.jpg")) {
+        image.src = "http://westerlayorchids.dreamhosters.com/wp-content/uploads/2013/03/3-Orchids-SS.jpg";
+    } else if(image.src.match("http://westerlayorchids.dreamhosters.com/wp-content/uploads/2013/03/3-Orchids-SS.jpg")) {
+        image.src = "https://scontent-mia1-2.xx.fbcdn.net/v/t1.0-9/71680_1677695583026_7296290_n.jpg?oh=fd98398c869a64ba0939b8095e9bdbe4&oe=59B1C185";
+    } else {
+        image.src = "http://mothersdayshrine.com/wp-content/uploads/2017/04/Happy-Mothers-Day-Cards.jpg" ;
+        }
+}
+
+function hello() { 
+    if(typeof(Storage) !== "undefined") {
+        if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+        } else {
+            localStorage.clickcount = 1;
+        }
+    } 
+    document.getElementById("demo").style.color = "green";
+    document.getElementById("demo").style.fontSize = "xx-large";
+    document.getElementById("demo").style.textAlign = "Center";
+    if(localStorage.clickcount == 0) {
+                document.getElementById("demo").innerHTML = "";
+        }
+        else if(localStorage.clickcount == 1) {
+                document.getElementById("demo").innerHTML = "Hi mom :)";
+        }
+        else if(localStorage.clickcount == 2) {
+                document.getElementById("demo").innerHTML = "Happy Mother's Day!";
+        }
+        else if(localStorage.clickcount == 3) {
+                document.getElementById("demo").innerHTML = "I appreciate everything you've done for me.";
+        }
+        else if(localStorage.clickcount == 4) {
+                document.getElementById("demo").innerHTML = "I know you only want the best for me.";
+        }
+        else if(localStorage.clickcount == 5) {
+                document.getElementById("demo").innerHTML = "I'm not sure how to write everything in Vietnamese, but...";
+        }
+        else if(localStorage.clickcount == 6) {
+                document.getElementById("demo").innerHTML = "I love you <3";
+        }
+        else if(localStorage.clickcount == 7) {
+                document.getElementById("demo").innerHTML = "I'm going to keep improving myself.";
+        }
+        else if(localStorage.clickcount == 8) {
+                document.getElementById("demo").innerHTML = "One more thing:";
+        }
+        else {
+                document.getElementById("demo").innerHTML = "What do you want for dinner?";
+		localStorage.clickcount = 0;
+        }
+        
+}
+</script>
+</head>
+<h2>What day is it? It's...</h2> 
+
+<body>
+<h3><img id="myImage" onclick="changeImage()" src="http://mothersdayshrine.com/wp-content/uploads/2017/04/Happy-Mothers-Day-Cards.jpg"  style="width:500px;height:350px;"></h3>
+
+<p>Click the image for other images.</p>
+
+<p1><button type="button" onclick="hello()">Click Me</button> </p1>
+
+<p2 id="demo"></p2>
+
+</body>
+</html>
