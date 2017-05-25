@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<audio id="audio_player" src="https://youtu.be/mWIHlqAOFL0"></audio>
+
+<h1> 
+<button onclick="play()">Play</button>
+<button onclick="pause()">Pause</button>
+</h1>
+
+<script>
+
+var audio = document.getElementById("audio_player");
+var myVar = setInterval(myTimer, 1000); 
+
+function secondsToMinutes(p1) {
+    var num = Math.floor(p1/60);
+    var n = num.toString();
+    var o = 0; 
+    var p = p1 % 60; 
+    if (p < 10) {o = o.toString().concat(p.toString());}
+    else {o = p.toString();}
+    return n.concat(":"+o)
+}
+
+function myTimer() {
+    var x = audio.currentTime.toFixed(0);
+    var y = " / ";
+    var z = audio.duration.toFixed(0);
+    document.getElementById("time").innerHTML = secondsToMinutes(x) + y + secondsToMinutes(z);
+}
+
+function play() {
+    audio.play();
+    myTimer();
+}
+
+function pause() {
+    audio.pause();
+}
+</script>
+
+<div id="time"></div>
+</body>
+</html>
