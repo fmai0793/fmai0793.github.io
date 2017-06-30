@@ -2,7 +2,7 @@
 <html>
 <style>
 table{
-   width: 100%
+   width: 90%
 }
 td{
   font-size:30px;
@@ -21,6 +21,10 @@ input[type="button"]
     font-size:30px;
     padding: 25px;
 }
+.wrapper { 
+  text-align:center;
+}
+
 </style>
 <body>
 
@@ -30,9 +34,9 @@ input[type="button"]
 
 <table style="width:100%">
   <tr>
-    <td id="incorrect" style="color: red">0</td>
+    <td id="incorrect" style="color: red">0 wrong</td>
     <td id="demo2"></td> 
-    <td id="correct" style="color: green">0</td>
+    <td id="correct" style="color: green">0 right</td>
   </tr>
 </table>
 <!--<h1 id="demo2"></h1>  <--Number with blank-->
@@ -41,7 +45,7 @@ input[type="button"]
 
 <p3 hidden id="demo4"></p3>  <!--Number replaced by blank-->
 
-<form action="" method="" name="vform">
+<form action="" method="" id="vform">
 
 <input type="button" class="fbutton" name="1" value="1" id="1" onClick=chooseNumber(this); />
 <input type="button" class="fbutton" name="2" value="2" id="2" onClick=chooseNumber(this); />
@@ -55,20 +59,44 @@ input[type="button"]
 <input type="button" class="fbutton" name="8" value="8" id="8" onClick=chooseNumber(this); />
 <input type="button" class="fbutton" name="9" value="9" id="9" onClick=chooseNumber(this); />
 <h4></h4>
-<input type="button" class="fbutton" name="0" value="_" id="0" ; />
+<input type="button" class="fbutton" value="&#8635" onClick=playAudio(); />
 <input type="button" class="fbutton" name="0" value="0" id="0" onClick=chooseNumber(this); />
 <input type="button" class="fbutton" value="&#8594" onClick=checkChar(this); />
 </form>
+<h5 hidden id="demo5"></h5>
+<h6></h6>
+<div class="wrapper">
+    <button id="start" onclick="startNewGame()">Click to begin</button>
+</div>
 <script>
 
 var audio = document.getElementById("audio_player");
 var times = new Array(1.35,2.54,3.75,4.9,6.05,7.29,8.43,9.72,11.09,12.16,13.37,14.5,15.74,16.92,18.1,19.24,20.4,21.59,22.86,24.01,25.32,26.52,27.84,29.12,30.45,31.83,33.2,34.66,36.05,37.32,38.74,39.81,41.06,42.28,43.49,44.8,46.17,47.51,48.79,50.03,51.39,52.45,53.8,55.05,56.34,57.65,59.09,60.43,61.78,63.03,64.45,65.49,66.79,68.04,69.34,70.7,72.12,73.47,74.84,76.2,77.66,79.14,80.55,82.18,83.59,85.58,86.97,88.43,89.85,91.22,92.73,94.01,95.43,96.81,98.25,99.63,101.14,102.54,104.08,105.54,107.11,108.15,109.48,110.75,112.11,113.49,114.91,116.34,117.7,119.08,120.35,121.57,122.98,124.31,125.73,127.13,128.49,129.9,131.38,132.72,134.16,135.28,136.66,137.42,138.45,139.75,141.02,143.09,144.19,145.22,146.44);
-process();
-document.getElementById("correct").innerHTML = 0;
-document.getElementById("incorrect").innerHTML = 0;
+document.getElementById("demo5").innerHTML = 0;
+document.getElementById("vform").style.display="none";
+
+function startNewGame() {
+    var i = document.getElementById("demo5").innerHTML;
+    if (i==0) {
+        document.getElementById("vform").style.display="block";
+        i++;
+        document.getElementById("demo5").innerHTML = i;
+        document.getElementById("start").innerHTML = "Click to restart";
+        process(); 
+        }
+    else {
+        document.getElementById("vform").style.display="none";
+        i=0; 
+        document.getElementById("demo2").innerHTML = "";
+        document.getElementById("demo5").innerHTML = i;
+        document.getElementById("correct").innerHTML = "0 right"; 
+        document.getElementById("incorrect").innerHTML = "0 wrong";
+        document.getElementById("start").innerHTML = "Click to start";
+        }
+}
 
 function process(){
-    setTimeout(pickRandom(), 3000);		
+    pickRandom();		
     selectRandomIndex();	
     playAudio();		
     chooseNumber();	
@@ -112,13 +140,15 @@ function chooseNumber(element){
 }
 
 function checkChar() {
+    var base = ' wrong';
+    var base2 = ' right';
     var user = parseInt(document.getElementById("demo2").innerHTML);
     var n = parseInt(document.getElementById("demo").innerHTML);
-    var cor = document.getElementById("correct").innerHTML;
-    var inc = document.getElementById("incorrect").innerHTML;
+    var cor = parseInt(document.getElementById("correct").innerHTML);
+    var inc = parseInt(document.getElementById("incorrect").innerHTML);
     if (user == n) {cor++; 
-    document.getElementById("correct").innerHTML = cor;} // Create a counter and alert for correct/incorrect
-    else {inc++; document.getElementById("incorrect").innerHTML = inc;}
+    document.getElementById("correct").innerHTML = cor.toString().concat(base2);} // Create a counter and alert for correct/incorrect
+    else {inc++; document.getElementById("incorrect").innerHTML = inc.toString().concat(base);}
     process();
 }
 
