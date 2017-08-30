@@ -1,48 +1,19 @@
 <!DOCTYPE html>
 <html>
 <style>
-table{
-   width: 90%
+.row {
+    margin-bottom: 30px;
+    font-size: 25px;
 }
-td{
-  font-size:30px;
-  text-align:center;
-  width: 10%;
-}
-
-#buttoncontainer
-{
-    text-align:center;
-}
-.fbutton
-{
-    padding: 25px;
-    font-size:30px;
-    width: 30%;
-}
-.wrapper { 
-    text-align:center;
-}
-.button
-{
-    padding: 20px;
-    font-size:30px;
-    width: 30%;
+.btn.btn-default.btn-lg.btn-block{
+    font-size: 20px;
 }
 </style>
 <body>
-
+<h> <link rel="stylesheet" href="bootstrap.css"> </h>
 <audio id="audio_player" src="numbers.m4a"></audio>
 
 <p hidden id="demo"></p>  <!--Original number-->
-
-<table style="width:100%">
-  <tr>
-    <td id="incorrect" style="color: red">0 wrong</td>
-    <td><span id="demo1"></span><span id="demo2"></span><span id="demo3"></span></td> 
-    <td id="correct" style="color: green">0 right</td>
-  </tr>
-</table>
 
 <p2 hidden id="demo4"></p2>  <!--Number replaced by blank-->
 
@@ -52,28 +23,73 @@ td{
 
 <p5 hidden id="demo8"></p5>  <!--Number replaced by blank-->
 
-<div id="buttoncontainer">
-<button class="fbutton" value="1" onClick=chooseNumber(this);>1</button>
-<button class="fbutton" value="2" onClick=chooseNumber(this);>2</button>
-<button class="fbutton" value="3" onClick=chooseNumber(this);>3</button>
-<h2></h2>
-<button class="fbutton" value="4" onClick=chooseNumber(this);>4</button>
-<button class="fbutton" value="5" onClick=chooseNumber(this);>5</button>
-<button class="fbutton" value="6" onClick=chooseNumber(this);>6</button>
-<h3></h3>
-<button class="fbutton" value="7" onClick=chooseNumber(this);>7</button>
-<button class="fbutton" value="8" onClick=chooseNumber(this);>8</button>
-<button class="fbutton" value="9" onClick=chooseNumber(this);>9</button>
-<h4></h4>
-<button class="fbutton" value="Replay" onClick=playAudio();>Replay</button>
-<button class="fbutton" value="0" onClick=chooseNumber(this);>0</button>
-<button class="fbutton" value="Submit" onClick=checkChar(this);>Submit</button>
-</div>
 <h5 hidden id="demo6"></h5>
-<h6></h6>
-<div class="wrapper">
-    <button class="button" id="start" onclick="startNewGame()">Click to begin</button>
+
+<div class="container">
+    <div class="col-md-6 col-md-offset-3">
+        <div id="number">
+            <div class="row">
+                <div class="col-xs-4 text-center" id="incorrect" style="color: red">0 wrong</div>
+                <div class="col-xs-4 text-center"><span id="demo1"></span><span id="demo2"></span><span id="demo3"></div>
+                <div class="col-xs-4 text-center" id="correct" style="color: green">0 right </div>
+            </div>
+        </div>
+        <div id="buttoncontainer">
+            <div class="row">
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" value="1" onClick=chooseNumber(this);>1</button>
+                </div>
+                <div class="col-xs-4">     
+                    <button class="btn btn-default btn-lg btn-block" value="2" onClick=chooseNumber(this);>2</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" value="3" onClick=chooseNumber(this);>3</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" value="4" onClick=chooseNumber(this);>4</button>
+                </div>
+                <div class="col-xs-4">     
+                    <button class="btn btn-default btn-lg btn-block" value="5" onClick=chooseNumber(this);>5</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" value="6" onClick=chooseNumber(this);>6</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" value="7" onClick=chooseNumber(this);>7</button>
+                </div>
+                <div class="col-xs-4">     
+                    <button class="btn btn-default btn-lg btn-block" value="8" onClick=chooseNumber(this);>8</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" value="9" onClick=chooseNumber(this);>9</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"> 
+                    <button class="btn btn-default btn-lg btn-block" class="col-md-4" value="Replay" onClick=playAudio();>Replay</button>
+                </div>
+                <div class="col-xs-4"> 
+                    <button class="btn btn-default btn-lg btn-block" value="0" onClick=chooseNumber(this);>0</button>
+                </div>
+                <div class="col-xs-4">
+                    <button class="btn btn-default btn-lg btn-block" class="col-md-4" value="Submit" onClick=checkChar(this);>Submit</button>     
+                </div>
+            </div>
+        </div>  
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-4">     
+                    <button class="btn btn-default btn-lg btn-block" id="start" onclick="startNewGame()">Start</button>
+                </div>
+            </div>
+    </div>
 </div>
+
+<h6></h6>
+
 <script>
 
 var audio = document.getElementById("audio_player");
@@ -87,7 +103,7 @@ function startNewGame() {
         document.getElementById("buttoncontainer").style.display="block";
         i++;
         document.getElementById("demo6").innerHTML = i;
-        document.getElementById("start").innerHTML = "Click to restart";
+        document.getElementById("start").innerHTML = "Restart";
         process(); 
         }
     else {
@@ -102,15 +118,14 @@ function startNewGame() {
         document.getElementById("demo6").innerHTML = i;
         document.getElementById("correct").innerHTML = "0 right"; 
         document.getElementById("incorrect").innerHTML = "0 wrong";
-        document.getElementById("start").innerHTML = "Click to start";
+        document.getElementById("start").innerHTML = "Start";
         }
 }
 
 function process(){
     pickRandom();		
     selectRandomIndex();	
-    playAudio();		
-    chooseNumber();	
+    playAudio();
 }
 
 function pickRandom() { 
@@ -126,12 +141,16 @@ function selectRandomIndex(){
     document.getElementById("demo7").innerHTML = num;
     document.getElementById("demo8").innerHTML = array[num];
     var empty = "_";
-    if (length==1) {document.getElementById("demo1").innerHTML = empty;}
+    var zero = " ";
+    if (length==1) {document.getElementById("demo1").innerHTML = empty;
+                    document.getElementById("demo2").innerHTML = zero;}
     else if (length==2) {
          if (num==0) {document.getElementById("demo1").innerHTML = empty; 
-                      document.getElementById("demo2").innerHTML = array[1];}
+                      document.getElementById("demo2").innerHTML = array[1];
+                      document.getElementById("demo3").innerHTML = zero;}
          else {document.getElementById("demo1").innerHTML = array[0]; 
-               document.getElementById("demo2").innerHTML = empty;}
+               document.getElementById("demo2").innerHTML = empty;
+               document.getElementById("demo3").innerHTML = zero;}
          }
     else {if (num==0) {document.getElementById("demo1").innerHTML = empty; 
                        document.getElementById("demo2").innerHTML = array[1];
@@ -145,10 +164,6 @@ function selectRandomIndex(){
                document.getElementById("demo3").innerHTML = empty; }
          }
 }
-    // var str = array.replace(array[num], "_");
-    // document.getElementById("demo1").innerHTML = str;  // Number with blank for display
-    // document.getElementById("demo2").innerHTML = str;  // Number with blank for display
-    // document.getElementById("demo3").innerHTML = num;  // Index of missing number
 
 
 function playAudio(){
